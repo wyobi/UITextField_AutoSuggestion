@@ -154,6 +154,12 @@ static char keyboardFrameBeginRectKey;
 }
 
 - (void)updateHeight {
+    
+    if([self.tableView numberOfRowsInSection:0] == 0) {
+        [self hideAutoSuggestion];
+        return;
+    }
+
     NSInteger numberOfResults = [self tableView:self.tableView numberOfRowsInSection:0];
     NSInteger maxRowsToShow = self.maxNumberOfRows != 0 ? self.maxNumberOfRows : DEFAULT_MAX_NUM_OF_ROWS;
     CGFloat cellHeight = DEFAULT_ROW_HEIGHT;
